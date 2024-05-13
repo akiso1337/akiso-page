@@ -1,28 +1,49 @@
 $(window).on('load', function () {
 	$preloader = $('.preloader')
-			$preloader.delay(350).fadeOut('slow');
+	$preloader.delay(350).fadeOut('slow');
 });
 
-let video = document.getElementById('background');
-let btn = document.getElementById('MuteBtn');
+function musicPreferYes() {
+	hideQuestion();
+	enableMusic()
+	removeBlur();
+	setTimeout(showWrapper, 1000);
+}
 
-video.volume = 0.08;
+function musicPreferNo() {
+	hideQuestion();
+	removeBlur();
+	setTimeout(showWrapper, 1000);
+}
 
-//declare unmute icon variable
-let unmuteIcon = '<i class="bx bxs-volume-mute"></i>';
+function hideQuestion() {
+	$('#background')[0].play();
+	$('.music-prefer').delay(350).fadeOut('slow');
+}
 
-//declare mute icon variable
-let muteIcon = '<i class="bx bxs-volume-full"></i>';
+function showWrapper() {
+	$('.wrapper').css('display', 'block');
+}
 
-function myFunction() {
-	// toggle the muted property of the video element
+function removeBlur() {
+	document.getElementById("background").classList.add("blur-animation")
+}
+
+function enableMusic() {
+	let video = document.getElementById('background');
+
 	video.muted = !video.muted;
+	video.volume = 0.15;
 
-	// if the video is muted, set the btn.innerHTML to unmuteIcon
-	// otherwise, set it to the muteIcon
+	let btn = document.getElementById('MuteBtn');
+	let unmuteIcon = '<i class="bx bxs-volume-mute"></i>';
+	let muteIcon = '<i class="bx bxs-volume-full"></i>';
+
 	if (video.muted) {
 		btn.innerHTML = unmuteIcon;
 	} else {
 		btn.innerHTML = muteIcon;
 	}
+
+	document.getElementById("music-prefer-yes").onclick = null;
 }

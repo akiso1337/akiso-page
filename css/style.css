@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&family=Mukta:wght@400;500;600;700;800&family=Platypi:wght@300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&family=Mukta:wght@400;500;600;700;800&family=Nunito:wght@200..1000&display=swap');
 
 * {
 	padding: 0;
@@ -21,9 +21,7 @@ body {
 	width: 100vw;
 	height: 100svh;
 	background-color: #000;
-	/* for "kanekibg4kv3.webm" */
-	/* margin-left: 300px; */
-	font-family: 'Platypi', serif;
+	font-family: 'Nunito', sans-serif;
 	color: var(--text-color);
 	border: 0;
 	overflow: hidden;
@@ -63,10 +61,10 @@ body {
 	stroke: #ff4d4f;
 	stroke-dasharray: 48, 144;
 	stroke-dashoffset: 192;
-	animation: dash_682 1.4s linear infinite;
+	animation: dash 1.4s linear infinite;
 }
 
-@keyframes dash_682 {
+@keyframes dash {
 	72.5% {
 		opacity: 0;
 	}
@@ -76,20 +74,113 @@ body {
 	}
 }
 
+.music-prefer {
+	margin: 0 25px;
+}
+
+.music-prefer-question {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	padding: 32px 45px;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	border-radius: 20px;
+	background: rgba(0, 0, 0, 0.2);
+	backdrop-filter: blur(8px);
+	opacity: 0;
+	transition: 0.5s;
+	animation: fade-in 1.2s 0.5s ease-in forwards;
+}
+
+.music-prefer-question:hover {
+	box-shadow: 0 0 55px rgba(200, 250, 255, 0.4);
+}
+
+.music-prefer-question h2 {
+	text-align: center;
+	text-wrap: pretty;
+	font-size: 20px;
+	font-family: 'Mukta', sans-serif;
+	color: var(--text-color);
+}
+
+.music-prefer-buttons {
+	display: flex;
+	flex-direction: row;
+	gap: 35px;
+}
+
+.music-prefer-question button {
+	border: none;
+	outline: none;
+	background: none;
+	cursor: pointer;
+	padding: 6px 40px;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	border-radius: 20px;
+	box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+	font-family: 'Mukta', sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	color: #ffffffde;
+	transition: 0.2s;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.music-prefer-question button:hover {
+	background-color: rgba(255, 255, 255, 0.15);
+	box-shadow: 0 5px 15px rgba(182, 182, 182, 0.25);
+}
+
+@media (max-width: 514px) {
+	.music-prefer-question {
+		padding: 30px 25px;
+	}
+	.music-prefer-question h2 {
+		font-size: 18px;
+	}
+	.music-prefer-question button {
+		padding: 6px 35px;
+	}
+	.music-prefer-buttons {
+		gap: 15px;
+	}
+}
+
+@media (max-width: 437px) {
+	.music-prefer-question h2 {
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 300px) {
+	.music-prefer-buttons {
+		flex-direction: column;
+		gap: 15px;
+	}
+}
 
 #background {
 	position: fixed;
 	right: 0;
 	bottom: 0;
-	/* for "kanekibg4kv3.webm" */
-	/* bottom: -100px; */
 	z-index: -1;
 	object-fit: cover;
 	width: 100%;
 	height: 100%;
 	min-width: 100%;
 	min-height: 100%;
-	filter: brightness(30%);
+	filter: brightness(30%) blur(4px);
+}
+
+.blur-animation {
+	animation: blur 3s 0s ease-out forwards;
+}
+
+.wrapper {
+	display: none;
 }
 
 .container {
@@ -111,10 +202,9 @@ body {
 	opacity: 0;
 	filter: blur(3px);
 	scale: 0.9;
-	animation: fade-in 1.5s 1.3s ease-in forwards,
-	scale 1.5s 1.3s ease-out forwards;
-	/* animation: fade-in 1.5s 1.6s ease-in forwards; */
-	/* animation: fade-in 1.2s 6.9s ease-in forwards; */
+	animation:
+		fade-in 1.5s 0.8s ease-in forwards,
+		scale 1.5s 0.8s ease-out forwards;
 }
 
 .main-text {
@@ -128,30 +218,25 @@ body {
 	opacity: 0;
 	filter: blur(3px);
 	scale: 0.8;
-	animation: fade-in 1.5s 0.3s ease-in forwards,
-	scale 1.5s 0.3s ease-out forwards;
-	/* animation: fade-in 1s 1.3s ease-in forwards; */
-	/* animation: fade-in 1s 6.7s ease-in forwards; */
+	animation:
+		fade-in 1.5s 0s ease-in forwards,
+		scale 1.5s 0s ease-out forwards;
 }
 
 .blocks {
 	display: flex;
-	gap: 25px;
+	gap: 22px;
 	z-index: 1;
-	text-align: center;
 	user-select: none;
 }
 
-@media (max-width: 380px) {
-	.blocks {
-		gap: 8px;
-	}
-}
-
 .blocks a {
+	display: flex;
+	align-items: center;
+	gap: 6px;
 	border-radius: 12px;
 	background-color: var(--links-bg-color);
-	padding: 1px 25px 5px;
+	padding: 3px 20px 3px 14px;
 	text-decoration: none;
 	color: var(--text-color);
 	box-shadow: 0 0 40px #b10035;
@@ -159,6 +244,28 @@ body {
 	filter: blur(3px);
 	scale: 0.6;
 	transition: 0.2s;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.blocks a:hover {
+	background-color: var(--links-bg-color-hover);
+	transform: scale(1.15);
+}
+
+.logo {
+	height: 14px;
+	filter: invert(1) opacity(0.7);
+}
+
+@media (max-width: 380px) {
+	.blocks {
+		gap: 8px;
+	}
+
+	.blocks a:hover {
+		background-color: var(--links-bg-color-hover);
+		transform: scale(1.05);
+	}
 }
 
 @media (max-width: 345px) {
@@ -167,35 +274,42 @@ body {
 		gap: 25px;
 		flex-direction: column;
 	}
+
 	.blocks a {
-		padding: 10px 35px;
+		padding: 8px 55px;
+		gap: 35px;
+		justify-content: center;
+		font-weight: 600;
+	}
+
+	.blocks a:hover {
+		background-color: var(--links-bg-color-hover);
+		transform: scale(1.15);
+	}
+
+	.logo {
+		position: absolute;
+		height: 20px;
+		left: 8px;
 	}
 }
 
-.blocks a:hover {
-	background-color: var(--links-bg-color-hover);
-	transform: scale(1.15);
-}
-
 .steamlink {
-	animation: fade-in 1.6s 2s ease-in-out forwards,
-	scale 1.6s 2s ease-out forwards;
-	/* animation: fade-in 1.6s 2s ease-in-out forwards; */
-	/* animation: fade-in 1.6s 7.8s ease-in-out forwards; */
+	animation:
+		fade-in 1.6s 1.5s ease-in-out forwards,
+		scale 1.6s 1.5s ease-out forwards;
 }
 
 .tglink {
-	animation: fade-in 1.6s 2.3s ease-in-out forwards,
-	scale 1.6s 2.3s ease-out forwards;
-	/* animation: fade-in 1.6s 2.3s ease-in-out forwards; */
-	/* animation: fade-in 1.6s 8.1s ease-in-out forwards; */
+	animation:
+		fade-in 1.6s 1.8s ease-in-out forwards,
+		scale 1.6s 1.8s ease-out forwards;
 }
 
 .spotifylink {
-	animation: fade-in 1.6s 2.6s ease-in-out forwards,
-	scale 1.6s 2.6s ease-out forwards;
-	/* animation: fade-in 1.6s 2.6s ease-in-out forwards; */
-	/* animation: fade-in 1.6s 8.4s ease-in-out forwards; */
+	animation:
+		fade-in 1.6s 2.1s ease-in-out forwards,
+		scale 1.6s 2.1s ease-out forwards;
 }
 
 .near {
@@ -209,8 +323,6 @@ body {
 	background: rgba(0, 0, 0, 0.2);
 	box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
 	border: 1px solid rgba(255, 255, 255, 0.4);
-	/* border-right: 2px solid rgba(255, 255, 255, 0.2);
-	border-bottom: 2px solid rgba(255, 255, 255, 0.2); */
 	border-radius: 100px;
 	backdrop-filter: blur(8px);
 	user-select: none;
@@ -246,7 +358,9 @@ body {
 	opacity: 0;
 	scale: 0.8;
 	filter: blur(3px);
-	animation: fade-in 1s 0.3s ease forwards, scale 1.5s 0.3s ease-out forwards;
+	animation:
+		fade-in 1s 0.3s ease forwards,
+		scale 1.5s 0.3s ease-out forwards;
 }
 
 .btns button {
@@ -254,6 +368,7 @@ body {
 	outline: none;
 	background: none;
 	cursor: pointer;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .btns i {
@@ -267,6 +382,24 @@ body {
 
 .btns i:hover {
 	background-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 55px rgba(200, 250, 255, 0.4);
+	}
+	50% {
+		box-shadow: 0 0 65px rgba(186, 247, 255, 0.2);
+	}
+	100% {
+		box-shadow: 0 0 55px rgba(200, 250, 255, 0.4);
+	}
+}
+
+@keyframes blur {
+	100% {
+		filter: brightness(30%) blur(0);
+	}
 }
 
 @keyframes fade-in {
