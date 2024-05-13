@@ -3,9 +3,14 @@ $(window).on('load', function () {
 	$preloader.delay(350).fadeOut('slow');
 });
 
+const video = document.getElementById('background');
+const muteBtn = document.getElementById('mute-button');
+const volumeSlider = document.getElementById('vol-control');
+video.volume = 0.15;
+
 function musicPreferYes() {
 	hideQuestion();
-	enableMusic()
+	toggleMute();
 	removeBlur();
 	setTimeout(showWrapper, 1000);
 }
@@ -17,7 +22,7 @@ function musicPreferNo() {
 }
 
 function hideQuestion() {
-	$('#background')[0].play();
+	video.play();
 	$('.music-prefer').delay(350).fadeOut('slow');
 }
 
@@ -26,24 +31,36 @@ function showWrapper() {
 }
 
 function removeBlur() {
-	document.getElementById("background").classList.add("blur-animation")
+	video.classList.add("blur-animation")
 }
 
-function enableMusic() {
-	let video = document.getElementById('background');
-
-	video.muted = !video.muted;
-	video.volume = 0.15;
-
-	let btn = document.getElementById('MuteBtn');
-	let unmuteIcon = '<i class="bx bxs-volume-mute"></i>';
-	let muteIcon = '<i class="bx bxs-volume-full"></i>';
-
-	if (video.muted) {
-		btn.innerHTML = unmuteIcon;
-	} else {
-		btn.innerHTML = muteIcon;
-	}
+function toggleMute() {
+	video.muted = !video.muted
 
 	document.getElementById("music-prefer-yes").onclick = null;
 }
+
+muteBtn.addEventListener('click', toggleMute)
+volumeSlider.addEventListener('input', e => {
+	video.volume = e.target.value
+	video.muted = e.target.value === 0
+})
+
+function volumeSliderBG() {
+	volumeSlider.style.background = `linear-gradient(to top, rgba(255, 0, 98, 0.45) ${volumeSlider.value * 100}%, rgba(255, 255, 255, 0.3) ${volumeSlider.value * 100}%)`;
+}
+
+video.addEventListener('volumechange', () => {
+	volumeSlider.value = video.volume
+	volumeSliderBG()
+	let unmuteIcon = '<i class="bx bxs-volume-mute"></i>';
+	let muteIcon = '<i class="bx bxs-volume-full"></i>';
+	if (video.muted || video.volume === 0) {
+		volumeSlider.value = 0;
+		muteBtn.innerHTML = unmuteIcon;
+		volumeSliderBG()
+	} else {
+		muteBtn.innerHTML = muteIcon;
+	}
+})
+
