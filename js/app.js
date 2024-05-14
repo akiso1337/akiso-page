@@ -6,7 +6,7 @@ $(window).on('load', function () {
 const video = document.getElementById('background');
 const muteBtn = document.getElementById('mute-button');
 const volumeSlider = document.getElementById('vol-control');
-video.volume = 0.15;
+video.volume = 0.3;
 
 function musicPreferYes() {
 	hideQuestion();
